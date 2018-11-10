@@ -1,18 +1,31 @@
+$primary-color: #425381;
+
+body{
+    background-color: #2f2f31;
+}
+
+.container{
+    width: 90%;
+}
+
 .search{
     float: right;
 }
 
 .title{
-    background-color: aliceblue;
+    background-color: $primary-color;
+    color: white;
+    text-align: center;
 }
 
 .navbar{
-    background-color: aliceblue;
+    background-color: #425381;
+    
 }
 
 .navbar-brand{
     font-size: 30px;
-    color: black;
+    color: white;
 }
 
 .fa{
@@ -21,5 +34,14 @@
 
 button{
     border-radius: .25rem;
-    background-color: rgb(235, 233, 233);
+    background-color: rgb(247, 244, 244);
+}
+
+.card{
+    margin-top: 2%;
+    background-color: $primary-color;
+}
+
+.card-header{
+    background-color: white;
 }
