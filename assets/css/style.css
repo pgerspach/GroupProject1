@@ -1,3 +1,19 @@
+.search {
+  float: right; }
 
+.title {
+  background-color: aliceblue; }
 
-/*# sourceMappingURL=style.css.map */
+.navbar {
+  background-color: aliceblue; }
+
+.navbar-brand {
+  font-size: 30px;
+  color: black; }
+
+.fa {
+  padding: 8.5px; }
+
+button {
+  border-radius: .25rem;
+  background-color: #ebe9e9; }
