@@ -75,6 +75,7 @@ $(document).ready(function() {
                 steamID = thing.appid;
               }
             }
+            $("#chart").attr("src", "https://steamdb.info/embed/?appid=" + steamID);
             console.log("STEAM ID: "+steamID)
           })
 
