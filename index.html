@@ -10,34 +10,41 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
 
 </head>
 <body>
 
-    <div class="container">
+<div class="cointainer header">
+<!--     
         <div class="jumbotron title">
             <h1 class="display-4">Placeholder</h1>
-        </div>
-
-        <div class="row">
+        </div> -->
+        
+        <div class="row header">
             <div class="col-md-12">
                 <nav class="navbar">
                     <a class="navbar-brand" href="#">Placeholder</a>
                     <form class="form-inline my-2 search">
-                            <input type="search" class="form-control" id="search-input" placeholder="Search" autocorrect="off" autofill="off" >
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                            <input type="search" class="form-control inputGame" id="search-input" placeholder="Search" autocorrect="off" autofill="off" >
+                            <button class="submitButton"><i class="fa fa-search"></i></button>
                     </form>
                 </nav>
             </div>
+        </div>
+</div>
+        
+        <div class="container-full content-back">
+        <div class="row content">
             <div class="col-md-12">
                 <div class="card mb-6">
-                     <div class="card-header">Placeholder</div>
-                     <div class="card-body"></div>
+                     <div class="card-header">Twitch Stream</div>
+                     <div class="card-body twitch-video"></div>
                 </div>
                 <div class="card mb-6">
-                        <div class="card-header">Placeholder</div>
-                        <div class="card-body"></div>
+                        <div class="card-header">Overview</div>
+                        <div class="card-body description"></div>
                 </div>
                 <div class="card mb-6">
                      <div class="card-header">Placeholder</div>
@@ -47,9 +54,18 @@
         </div>
     </div>
 
+    <footer>
+        <div class="footer">
+          Copyright &copy; 
+        </div>
+      
+    </footer>
+
     <!-- jquery and script.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/javascript/script.js"></script>  
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script src="assets/javascript/script.js"></script> 
+    <script src="assets/javascript/twitchAPI.js"></script>
     
 </body>
 </html>
