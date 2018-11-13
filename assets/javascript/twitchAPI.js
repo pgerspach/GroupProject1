@@ -91,14 +91,16 @@ $(document).ready(function() {
             console.log(response);
             console.log(response.results[0].description);
             descHTML = response.results[0].description;
-            var descIndex = 0;
+            var descIndexStart=0;
+            var descIndex=0;
             for(var i=0;i<2;i++){
                descIndex = descHTML.indexOf("<h2>", descIndex);
                descIndex++;
                console.log(descIndex);
               
             }
-            $(".description").html(descHTML.slice(0,descIndex-1));
+            descIndexStart = descHTML.indexOf("</h2>", 0);
+            $(".description").html(descHTML.slice(descIndexStart+5,descIndex-1));
         }
     });
   });
