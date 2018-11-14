@@ -69,19 +69,22 @@ $(document).ready(function() {
             console.log('The video is ready');
           });
           $.ajax({
-            url: 'http://api.steampowered.com/ISteamApps/GetAppList/v0001/',
+            url: 'https://api.steampowered.com/ISteamApps/GetAppList/v0001/',
             method: "GET",
 
           }).then(function(response){
             for(let thing of response.applist.apps.app){
               if(thing.name == steamGame){
                 steamID = thing.appid;
+                $("#chart").attr("src", "https://steamdb.info/embed/?appid=" + steamID);
+                console.log("STEAM ID: "+steamID)
+                break;
               }
+              
             }
 
             //Pull the steam data based on SteamID
-            $("#chart").attr("src", "https://steamdb.info/embed/?appid=" + steamID);
-            console.log("STEAM ID: "+steamID)
+            
           })
 
       });
