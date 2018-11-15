@@ -1,34 +1,168 @@
-<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Web Application</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <!-- bootstrap & style.css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-
-</head>
-<body>
-
-    <div class="container">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/css/style.css"
+    />
+    <script
+      charset="utf-8"
+      src="https://platform.twitter.com/js/grid~moment~timeline~tweet.64ecbba9f1c21c2dac8fc5a9acb27286.js"
+    ></script>
+    <script
+      charset="utf-8"
+      src="https://platform.twitter.com/js/moment~timeline~tweet.50bff1a04f1f37b6a41fa15859518e07.js"
+    ></script>
+    <script
+      charset="utf-8"
+      src="https://platform.twitter.com/js/timeline.ff1cadbc55df123001e6a89a296d65b2.js"
+    ></script>
+  </head>
+  <body>
+    <div class="cointainer header">
+      <!--
         <div class="jumbotron title">
             <h1 class="display-4">Placeholder</h1>
         </div>
+      -->
 
-        <div class="row">
-            <div class="col-md-12">
-                <!--  -->
-            </div>
+      <div class="row header">
+        <div class="col-md-12">
+          <nav class="navbar">
+            <a class="navbar-brand" href="#">Placeholder</a>
+            <form class="form-inline my-2 search">
+              <input
+                type="search"
+                class="form-control inputGame"
+                id="search-input"
+                placeholder="Search"
+                autocorrect="off"
+                autofill="off"
+              />
+              <button class="submitButton"><i class="fa fa-search"></i></button>
+            </form>
+          </nav>
         </div>
+      </div>
     </div>
+
+    <div class="container content-back">
+      <div class="row content">
+        <div class=" col-6 card mb-6">
+          <div class="card-header">Twitch Stream</div>
+          <div class="card-body twitch-video">
+            <div id="twitch-embed">
+              <iframe
+                src=""
+                scrolling="no"
+                frameborder="0"
+                allow="autoplay; fullscreen"
+                width="511.2"
+                height="288"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+        <div class="card mb-6 col-6">
+          <div class="card-header">Latest Updates</div>
+          <div class="card-body" id="tweet"></div>
+        </div>
+      </div>
+      <div id="accordion" class="text-white">
+        <div class="card">
+          <div class="card-header">
+            <h5>
+              <a
+                href="#collapse1"
+                data-parent="#accordion"
+                data-toggle="collapse"
+                aria-expanded="true"
+                class=""
+              >
+                Description (click to expand)
+              </a>
+            </h5>
+          </div>
+
+          <div id="collapse1" class="collapse" style="">
+            <div class="card-body description"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h5>
+              <a
+                href="#collapse2"
+                data-parent="#accordion"
+                data-toggle="collapse"
+                aria-expanded="true"
+                class=""
+              >
+                Statistics (click to expand)
+              </a>
+            </h5>
+          </div>
+
+          <div id="collapse2" class="collapse " style="">
+            <div class="card-body col-12">
+              <iframe id="chart" width="100%" height="389px"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer><div class="footer">Copyright ©</div></footer>
 
     <!-- jquery and script.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/javascript/script.js"></script>  
-    
-</body>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <script src="assets/javascript/twitchAPI.js"></script>
+    <script
+      async=""
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
+
+    <iframe
+      id="rufous-sandbox"
+      scrolling="no"
+      frameborder="0"
+      allowtransparency="true"
+      allowfullscreen="true"
+      style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;"
+      title="Twitter analytics iframe"
+    ></iframe>
+  </body>
 </html>
