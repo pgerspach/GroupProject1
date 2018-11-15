@@ -21,6 +21,9 @@ $(document).ready(function() {
   console.log("HERE");
   $(".submitButton").on("click", function(event) {
     event.preventDefault();
+
+    //Have to empty the tweet to generate new one, otherwise twitter js won't work
+    $("#tweet").empty();
     console.log("HERE2");
 
     gameName = $(".inputGame").val();
@@ -66,16 +69,22 @@ $(document).ready(function() {
             console.log('The video is ready');
           });
           $.ajax({
-            url: 'http://api.steampowered.com/ISteamApps/GetAppList/v0001/',
+            url: 'https://api.steampowered.com/ISteamApps/GetAppList/v0001/',
             method: "GET",
 
           }).then(function(response){
             for(let thing of response.applist.apps.app){
               if(thing.name == steamGame){
                 steamID = thing.appid;
+                $("#chart").attr("src", "https://steamdb.info/embed/?appid=" + steamID);
+                console.log("STEAM ID: "+steamID)
+                break;
               }
+              
             }
-            console.log("STEAM ID: "+steamID)
+
+            //Pull the steam data based on SteamID
+            
           })
 
       });
@@ -103,6 +112,15 @@ $(document).ready(function() {
             $(".description").html(descHTML.slice(descIndexStart+5,descIndex-1));
         }
     });
+
+    //Added Tweet
+    var game_noSpace = gameName.replace(/\s+/g, '');
+    var tweet = $("<a>");
+    tweet.attr("href", "https://twitter.com/" + game_noSpace + "?ref_src=twsrc%5Etfw");
+    tweet.addClass("twitter-timeline");
+    $("#tweet").append(tweet);
+    twttr.widgets.load();
+
   });
 })
 })

@@ -47,9 +47,15 @@
                         <div class="card-body description"></div>
                 </div>
                 <div class="card mb-6">
-                     <div class="card-header">Placeholder</div>
-                     <div class="card-body"></div>
+                     <div class="card-header">Game Statistics</div>
+                     <div class="card-body">
+                        <iframe id="chart" src="" height="389px" width="100%" scrolling="no" frameborder="0"></iframe>
+                     </div>
                 </div>
+                <div class="card mb-6">
+                    <div class="card-header">Latest Updates</div>
+                    <div class="card-body" id="tweet"></div>
+               </div>
             </div>
         </div>
     </div>
@@ -63,8 +69,8 @@
     <!-- jquery and script.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://embed.twitch.tv/embed/v1.js"></script>
-    <script src="assets/javascript/script.js"></script> 
     <script src="assets/javascript/twitchAPI.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     
 </body>
 </html>
