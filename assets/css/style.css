@@ -1,11 +1,6 @@
 body {
   /* background-color: #2f2f31;  */
   font-family: Arial, Helvetica, sans-serif;
-  height: 100%;
-}
-
-html {
-  height: 100%;
 }
 
 .content-back {
@@ -97,7 +92,6 @@ footer {
   background-color: #2f2f31;
   color: white;
   text-align: center;
-  position: sticky;
 }
 
 .footer-font {
@@ -142,6 +136,10 @@ footer {
 
 .landingpage {
   background-color: #2f2f31;
+}
+
+.line {
+  /* border-left: white 1px solid; */
 }
 
 .profile-back {
