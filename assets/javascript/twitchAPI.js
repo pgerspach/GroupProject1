@@ -12,78 +12,36 @@
 //     }
 // });
 $(document).ready(function() {
-  var fullPageHTML = `
-  
-  <div class="cointainer header-back">
-  <div class="row header">
-    <div class="col-md-12">
-      <nav class="navbar">
-        <a class="navbar-brand" href="index.html">RPTV&trade;</a>
-        <form class="form-inline my-2 search">
-          <input
-            type="search"
-            class="form-control inputGame"
-            id="search-input"
-            placeholder="Insert Game Title"
-            autocorrect="off"
-            autofill="off"
-          />
-          <button class="submitButton"><i class="fa fa-search"></i></button>
-        </form>
-      </nav>
-    </div>
-  </div>
-</div>
-<div class="container-full content-back">
-  <div class="row content">
-    <div class="col-md-12">
-      <div class="card mb-6">
-        <div class="card-header">Twitch Stream</div>
-        <div class="card-body twitch-video"></div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card mb-6">
-        <div class="card-header">Latest Updates</div>
-        <div class="card-body" id="tweet"></div>
-      </div>
-    </div>
-  <div class="col-md-6">
-      <div class="card mb-6">
-        <div class="card-header">Overview</div>
-        <div class="card-body description"></div>
-      </div>
-  </div>
-      <div class="card mb-6 col-12 gameStatistic">
-        <div class="card-header">Game Statistics</div>
-        <div class="card-body">
-          <iframe
-            id="chart"
-            src=""
-            height="389px"
-            width="100%"
-            scrolling="no"
-            frameborder="0"
-          >
-          </iframe>
-        </div>
-      </div>
+  var fullPageHTML = `<div class="cointainer header-back"><!-- <div class="jumbotron title"> 
+  <h1 class="display-4">Placeholder</h1> </div>--> <div class="row header"> <div class="col-md-12"> 
+  <nav class="navbar"> <a class="navbar-brand" href="#">Placeholder</a> <form class="form-inline my-2 search"> 
+  <input type="search" class="form-control inputGame" id="search-input" placeholder="Search" autocorrect="off" autofill="off" > 
+  <button class="submitButton"><i class="fa fa-search"></i></button> </form> </nav> </div></div></div>
+  <div class="container-full content-back"> <div class="row content"> <div class="col-md-12"> <div class="card mb-6"> 
+  <div class="card-header">Twitch Stream</div><div class="card-body twitch-video"></div></div><div class="card mb-6"> 
+  <div class="card-header">Overview</div><div class="card-body description"></div></div><div class="card mb-6"> 
+  <div class="card-header">Game Statistics</div><div class="card-body"> <iframe id="chart" src="" height="389px" width="100%" scrolling="no" frameborder="0">
+  </iframe> </div></div> <div class="card mb-6"><div class="card-header">Review</div><div class="card-body"><div id="comment-section"></div><form method="post">
+  <textarea id="comment" name="comments" placeholder="Leave your review"></textarea><input class="btn btn-default" type="submit" name="submit" id="com_sub"></form></div>
+  </div><div class="card mb-6"> <div class="card-header">Latest Updates</div><div class="card-body" id="tweet">
+  </div></div></div></div></div><footer class="footer footer-background"> <div class="footer-font"> Copyright &copy; </div>
+  </footer> <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+  <script src="https://embed.twitch.tv/embed/v1.js"></script> <script src="assets/javascript/twitchAPI.js"></script> 
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>`;
 
-    </div>
+  var config = {
+    apiKey: "AIzaSyC13Trr9-_jfMW6Cn95Q2STkWaS22uM8e4",
+    authDomain: "gamehub-a8548.firebaseapp.com",
+    databaseURL: "https://gamehub-a8548.firebaseio.com",
+    projectId: "gamehub-a8548",
+    storageBucket: "gamehub-a8548.appspot.com",
+    messagingSenderId: "1068522789690"
+  };
+  firebase.initializeApp(config);
 
-
-<footer class="footer footer-background">
-  <div class="footer-font">Copyright &copy;</div>
-</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://embed.twitch.tv/embed/v1.js"></script>
-<script src="assets/javascript/twitchAPI.js"></script>
-<script
-  async
-  src="https://platform.twitter.com/widgets.js"
-  charset="utf-8"
-></script>
-`;
+  var database = firebase.database();
+  var child;
+  /**************************************** */
 
   // var config = {
   //   apiKey: "AIzaSyC13Trr9-_jfMW6Cn95Q2STkWaS22uM8e4",
@@ -100,8 +58,23 @@ $(document).ready(function() {
   $(".submitButton").on("click", function(event) {
     event.preventDefault();
     var gameName = $(".inputGame").val();
-
+    
     $("body").html(fullPageHTML);
+      $("#com_sub").on("click", function(event) {
+        event.preventDefault();
+    
+        var comment = $("#comment").val().trim();
+        console.log(comment);
+    
+        child.push({
+          comment: comment,
+        });
+        $("#comment").val("");
+        var comm = $("<p>");
+        comm.text(comment);
+        $("#comment-section").append(comm);
+      });
+      /**************************************** */
     mainPage(gameName);
   });
 
@@ -116,7 +89,7 @@ $(document).ready(function() {
   }
 
   function runSearch(gameName) {
-    //Have to empty the tweet to generate new one, otherwise twitter js won't work
+
     $("#tweet").empty();
     getFullName(gameName);
   }
@@ -131,6 +104,7 @@ $(document).ready(function() {
       getStream(steamGame, gameID);
       showOverview(gameID);
       showTwitter(gameName);
+      addComments(steamGame);
     });
   }
 
@@ -209,4 +183,19 @@ $(document).ready(function() {
     $("#tweet").append(tweet);
     twttr.widgets.load();
   }
+  /**************************************** */
+  function addComments(realname) {
+    child = database.ref("/" + realname);
+
+    child.once("value", function(snapshot) {
+      snapshot.forEach(function(snap) {
+        var user_comment = snap.val().comment;
+        console.log(user_comment);
+        var comm = $("<p>");
+        comm.text(user_comment);
+        $("#comment-section").append(comm);
+      });
+    });
+  }
+ /**************************************** */
 });
