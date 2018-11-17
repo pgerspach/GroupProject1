@@ -67,14 +67,25 @@ button {
 
 .description {
   color: white;
+  height: 381px;
+  overflow-y: scroll;
 }
 
 a {
   color: white;
 }
 
+a:active{
+  color: white;
+}
+
+a:hover{
+  color: white;
+}
+
 p {
   margin-bottom: 20px;
+  line-height: 25px;
 }
 
 .twitch-video {
@@ -96,6 +107,16 @@ footer {
 
 .footer-font {
   padding: 20px;
+}
+
+img{
+  width: 15%;
+}
+
+.gameStatistic{
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-bottom: 3%;
 }
 
 /* LANDING PAGE */
@@ -121,7 +142,7 @@ footer {
   /* background-color: white; */
   padding: 1%;
   box-sizing: border-box;
-  margin-top: 13%;
+  margin-top: 17%;
 }
 
 .about {
@@ -145,7 +166,7 @@ footer {
 .profile-back {
   background-color: white;
   width: 100%;
-  margin-top: 13%;
+  margin-top: 12%;
 }
 
 .profile {
