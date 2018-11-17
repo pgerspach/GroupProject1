@@ -18,7 +18,7 @@ $(document).ready(function() {
   <div class="row header">
     <div class="col-md-12">
       <nav class="navbar">
-        <a class="navbar-brand" href="#">RPTV Search</a>
+        <a class="navbar-brand" href="#">RPTV Search  </a>
         <form class="form-inline my-2 search">
           <input
             type="search"
