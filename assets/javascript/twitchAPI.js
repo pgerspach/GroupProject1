@@ -43,6 +43,95 @@ $(document).ready(function() {
   var child;
   /**************************************** */
   
+  <div class="container header-back">
+  <div class="row header">
+    <div class="col-md-12">
+      <nav class="navbar">
+        <a class="navbar-brand" href="#">RPTV Search  </a>
+        <form class="form-inline my-2 search">
+          <input
+            type="search"
+            class="form-control inputGame"
+            id="search-input"
+            placeholder="Search"
+            autocorrect="off"
+            autofill="off"
+          />
+          <button class="submitButton"><i class="fa fa-search"></i></button>
+        </form>
+      </nav>
+    </div>
+  </div>
+</div>
+<div class="container-full content-back">
+  <div class="row content">
+    <div class="col-md-6">
+      <div class="card mb-6">
+        <div class="card-header">Twitch Stream</div>
+        <div class="card-body twitch-video"></div>
+      </div>
+
+    </DIV>
+    <div class="col-md-6">
+      <div class="card mb-6">
+        <div class="card-header">Latest Updates</div>
+        <div class="card-body" id="tweet"></div>
+      </div>
+    </div>
+</div>
+
+
+<div class="row content">
+      <div class="card mb-6">
+        <div class="card-header">Overview</div>
+        <div class="card-body description"></div>
+      </div>
+
+
+
+      <div class="card mb-6 col-12">
+        <div class="card-header">Game Statistics</div>
+        <div class="card-body">
+          <iframe
+            id="chart"
+            src=""
+            height="389px"
+            width="100%"
+            scrolling="no"
+            frameborder="0"
+          >
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+
+<footer class="footer footer-background">
+  <div class="footer-font">Copyright &copy;</div>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://embed.twitch.tv/embed/v1.js"></script>
+<script src="assets/javascript/twitchAPI.js"></script>
+<script
+  async
+  src="https://platform.twitter.com/widgets.js"
+  charset="utf-8"
+></script>
+`;
+
+  // var config = {
+  //   apiKey: "AIzaSyC13Trr9-_jfMW6Cn95Q2STkWaS22uM8e4",
+  //   authDomain: "gamehub-a8548.firebaseapp.com",
+  //   databaseURL: "https://gamehub-a8548.firebaseio.com",
+  //   projectId: "gamehub-a8548",
+  //   storageBucket: "gamehub-a8548.appspot.com",
+  //   messagingSenderId: "1068522789690"
+  // };
+  // firebase.initializeApp(config);
+
+  // var database = firebase.database();
+
   $(".submitButton").on("click", function(event) {
     event.preventDefault();
     var gameName = $(".inputGame").val();
