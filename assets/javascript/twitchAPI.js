@@ -42,27 +42,27 @@ $(document).ready(function() {
   var database = firebase.database();
   var child;
   /**************************************** */
-  $("#com_sub").on("click", function(event) {
-    event.preventDefault();
-
-    var comment = $("#comment").val().trim();
-    console.log(comment);
-
-    child.push({
-      comment: comment,
-    });
-    $("#comment").val("");
-    var comm = $("<p>");
-    comm.text(comment);
-    $("#comment-section").append(comm);
-  });
-  /**************************************** */
-
+  
   $(".submitButton").on("click", function(event) {
     event.preventDefault();
     var gameName = $(".inputGame").val();
-
+    
     $("body").html(fullPageHTML);
+      $("#com_sub").on("click", function(event) {
+        event.preventDefault();
+    
+        var comment = $("#comment").val().trim();
+        console.log(comment);
+    
+        child.push({
+          comment: comment,
+        });
+        $("#comment").val("");
+        var comm = $("<p>");
+        comm.text(comment);
+        $("#comment-section").append(comm);
+      });
+      /**************************************** */
     mainPage(gameName);
   });
 
