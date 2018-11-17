@@ -18,13 +18,13 @@ $(document).ready(function() {
   <div class="row header">
     <div class="col-md-12">
       <nav class="navbar">
-        <a class="navbar-brand" href="#">Placeholder</a>
+        <a class="navbar-brand" href="index.html">RPTV&trade;</a>
         <form class="form-inline my-2 search">
           <input
             type="search"
             class="form-control inputGame"
             id="search-input"
-            placeholder="Search"
+            placeholder="Insert Game Title"
             autocorrect="off"
             autofill="off"
           />
@@ -36,31 +36,25 @@ $(document).ready(function() {
 </div>
 <div class="container-full content-back">
   <div class="row content">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="card mb-6">
         <div class="card-header">Twitch Stream</div>
         <div class="card-body twitch-video"></div>
       </div>
-
-    </DIV>
+    </div>
     <div class="col-md-6">
       <div class="card mb-6">
         <div class="card-header">Latest Updates</div>
         <div class="card-body" id="tweet"></div>
       </div>
     </div>
-</div>
-
-
-<div class="row content">
+  <div class="col-md-6">
       <div class="card mb-6">
         <div class="card-header">Overview</div>
         <div class="card-body description"></div>
       </div>
-
-
-
-      <div class="card mb-6 col-12">
+  </div>
+      <div class="card mb-6 col-12 gameStatistic">
         <div class="card-header">Game Statistics</div>
         <div class="card-body">
           <iframe
