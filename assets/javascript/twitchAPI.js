@@ -76,17 +76,15 @@ $(document).ready(function() {
     });
   }
 
-
   function runSearch(gameName) {
 
     $("#tweet").empty();
     getFullName(gameName);
   }
-  function getFullName(gameName){
+  function getFullName(gameName) {
     $.ajax({
       url: `https://api.twitch.tv/kraken/search/games?client_id=o31s0t9lor4pa6ix7id21wlfbilp67&query=${gameName}&type=suggest`,
       method: "GET"
-
     }).then(function(data) {
       var gameID = data.games[0].name;
       var steamGame = gameID;
@@ -98,13 +96,11 @@ $(document).ready(function() {
     });
   }
 
-  function getStream(steamGame, gameID){
+  function getStream(steamGame, gameID) {
     $.ajax({
       url: `https://api.twitch.tv/kraken/streams?client_id=o31s0t9lor4pa6ix7id21wlfbilp67&game=${gameID}&type=suggest`,
       method: "GET"
-
     }).then(function(data) {
-
       var embedDiv = $("<div>");
       embedDiv.attr("id", "twitch-embed");
       var twitchStream = embedDiv;
@@ -122,10 +118,9 @@ $(document).ready(function() {
         console.log("The video is ready");
       });
       showSteam(steamGame);
-
     });
   }
-  function showSteam(steamGame){
+  function showSteam(steamGame) {
     $.ajax({
       url: "https://api.steampowered.com/ISteamApps/GetAppList/v0001/",
       method: "GET"
@@ -142,7 +137,7 @@ $(document).ready(function() {
       }
     });
   }
-  function showOverview(gameID){
+  function showOverview(gameID) {
     $.ajax({
       url: `https://www.giantbomb.com/api/search/?api_key=9de8e16c98e24b4f3f0f48d511fa91bd27023372&query=${gameID}&format=jsonp`,
       method: "GET",
@@ -164,17 +159,17 @@ $(document).ready(function() {
       }
     });
   }
-  function showTwitter(gameName){
-     //Added Tweet
-     var game_noSpace = gameName.replace(/\s+/g, "");
-     var tweet = $("<a>");
-     tweet.attr(
-       "href",
-       "https://twitter.com/" + game_noSpace + "?ref_src=twsrc%5Etfw"
-     );
-     tweet.addClass("twitter-timeline");
-     $("#tweet").append(tweet);
-     twttr.widgets.load();
+  function showTwitter(gameName) {
+    //Added Tweet
+    var game_noSpace = gameName.replace(/\s+/g, "");
+    var tweet = $("<a>");
+    tweet.attr(
+      "href",
+      "https://twitter.com/" + game_noSpace + "?ref_src=twsrc%5Etfw"
+    );
+    tweet.addClass("twitter-timeline");
+    $("#tweet").append(tweet);
+    twttr.widgets.load();
   }
   /**************************************** */
   function addComments(realname) {

@@ -1,37 +1,95 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Web Application</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>RPTV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <!-- bootstrap & style.css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"/>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="assets/css/style.css"
+    />
+  </head>
+  <body class="landingpage">
+    <div class="cointainer header-back-landing">
+      <div class="row header">
+        <div class="col-md-12">
+          <nav class="navbar landing">
+            <a class="navbar-brand landing-page" href="index.html"
+              >RPTV &trade;</a
+            >
+          </nav>
+        </div>
+      </div>
+    </div>
 
-</head>
-<body>
+    <div class="container-full about-back">
+      <div class="row about">
+        <div class="col-md-12">
+          <div class="card mb-6 line">
+            <h1 class="about-us-h1">ABOUT US</h1>
+            <p class="about-us-p">
+              RPTV is a site who's name comes from the first initials of its
+              creators, Rick, Pat, Tim, and Verena. We are awesome, and you
+              should recognize. ....Word.
+            </p>
+            <form class="form-inline my-2 search-landing">
+              <input
+                type="search"
+                class="form-control inputGame"
+                id="search-input"
+                placeholder="Search"
+                autocorrect="off"
+                autofill="off"
+              />
+              <button class="submitButton"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="cointainer header-back">
-<!--     
-        <div class="jumbotron title">
-            <h1 class="display-4">Placeholder</h1>
-        </div> -->
-        
-        <div class="row header">
-            <div class="col-md-12">
-                <nav class="navbar">
-                    <a class="navbar-brand" href="#">Placeholder</a>
-                    <form class="form-inline my-2 search">
-                            <input type="search" class="form-control inputGame" id="search-input" placeholder="Search" autocorrect="off" autofill="off" >
-                            <button class="submitButton"><i class="fa fa-search"></i></button>
-                    </form>
-                </nav>
-            </div>
+    <div class="container-full profile-back">
+      <div class="row profile">
+        <div class="col-md-3">
+          <h1 class="profile-name">Patrick Gerspach</h1>
+          <div class="icon"><i class="fas fa-grin-alt fa-7x"></i></div>
+          <a class="profile-text" href="https://github.com/pgerspach">
+            github.com/pgerspach
+          </a>
+        </div>
+        <div class="col-md-3">
+          <h1 class="profile-name">Tim Wu</h1>
+          <div class="icon"><i class="fas fa-laugh fa-7x"></i></div>
+          <a class="profile-text" href="https://github.com/timwu1015">
+            github.com/timwu1015
+          </a>
+        </div>
+        <div class="col-md-3">
+          <h1 class="profile-name">Ulric Toldman</h1>
+          <div class="icon"><i class="fas fa-smile-beam fa-7x"></i></div>
+          <a class="profile-text" href="https://github.com/ricksinclair">
+            github.com/ricksinclair
+          </a>
         </div>
 </div>
         
@@ -68,12 +126,11 @@
                </div>
             </div>
         </div>
+      </div>
     </div>
 
     <footer class="footer footer-background">
-        <div class="footer-font">
-          Copyright &copy; 
-        </div>  
+      <div class="footer-font">Copyright &copy;</div>
     </footer>
 
     <!-- jquery and script.js -->
@@ -81,7 +138,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://embed.twitch.tv/embed/v1.js"></script>
     <script src="assets/javascript/twitchAPI.js"></script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-    
-</body>
+    <script
+      async
+      src="https://platform.twitter.com/widgets.js"
+      charset="utf-8"
+    ></script>
+  </body>
 </html>
