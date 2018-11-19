@@ -54,6 +54,7 @@ $(document).ready(function() {
         <div class="card-body description"></div>
       </div>
   </div>
+ 
       <div class="card mb-6 col-12 gameStatistic">
         <div class="card-header">Game Statistics</div>
         <div class="card-body">
@@ -68,7 +69,16 @@ $(document).ready(function() {
           </iframe>
         </div>
       </div>
-
+      <div class="card mb-6">
+      <div class="card-header">Review</div>
+            <div class="card-body">
+                  <div id="comment-section"></div>
+                  <form method="post">
+                      <textarea id="comment" name="comments" placeholder="Leave your review"></textarea>
+                      <input class="btn btn-default" type="submit" name="submit" id="com_sub">
+                  </form>
+            </div>
+      </div>
     </div>
 
 
@@ -85,23 +95,38 @@ $(document).ready(function() {
 ></script>
 `;
 
-  // var config = {
-  //   apiKey: "AIzaSyC13Trr9-_jfMW6Cn95Q2STkWaS22uM8e4",
-  //   authDomain: "gamehub-a8548.firebaseapp.com",
-  //   databaseURL: "https://gamehub-a8548.firebaseio.com",
-  //   projectId: "gamehub-a8548",
-  //   storageBucket: "gamehub-a8548.appspot.com",
-  //   messagingSenderId: "1068522789690"
-  // };
-  // firebase.initializeApp(config);
+  var config = {
+    apiKey: "AIzaSyC13Trr9-_jfMW6Cn95Q2STkWaS22uM8e4",
+    authDomain: "gamehub-a8548.firebaseapp.com",
+    databaseURL: "https://gamehub-a8548.firebaseio.com",
+    projectId: "gamehub-a8548",
+    storageBucket: "gamehub-a8548.appspot.com",
+    messagingSenderId: "1068522789690"
+  };
+  firebase.initializeApp(config);
 
-  // var database = firebase.database();
+  var database = firebase.database();
+  var child;
 
   $(".submitButton").on("click", function(event) {
     event.preventDefault();
     var gameName = $(".inputGame").val();
 
     $("body").html(fullPageHTML);
+    $("#com_sub").on("click", function(event) {
+      event.preventDefault();
+  
+      var comment = $("#comment").val().trim();
+      console.log(comment);
+  
+      child.push({
+        comment: comment,
+      });
+      $("#comment").val("");
+      var comm = $("<p>");
+      comm.text(comment);
+      $("#comment-section").append(comm);
+    });
     mainPage(gameName);
   });
 
@@ -117,6 +142,7 @@ $(document).ready(function() {
 
   function runSearch(gameName) {
     //Have to empty the tweet to generate new one, otherwise twitter js won't work
+    $("#comment-section").empty();
     $("#tweet").empty();
     getFullName(gameName);
   }
@@ -131,6 +157,7 @@ $(document).ready(function() {
       getStream(steamGame, gameID);
       showOverview(gameID);
       showTwitter(gameName);
+      addComments(steamGame);
     });
   }
 
@@ -208,5 +235,19 @@ $(document).ready(function() {
     tweet.addClass("twitter-timeline");
     $("#tweet").append(tweet);
     twttr.widgets.load();
+  }
+
+  function addComments(realname) {
+    child = database.ref("/" + realname);
+
+    child.once("value", function(snapshot) {
+      snapshot.forEach(function(snap) {
+        var user_comment = snap.val().comment;
+        console.log(user_comment);
+        var comm = $("<p>");
+        comm.text(user_comment);
+        $("#comment-section").append(comm);
+      });
+    });
   }
 });
