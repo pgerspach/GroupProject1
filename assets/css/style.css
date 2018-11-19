@@ -75,12 +75,12 @@ a {
   color: white;
 }
 
-a:active{
+a:active {
   color: white;
 }
 
-a:hover{
-  color: white;
+a:hover {
+  color: darkred;
 }
 
 p {
@@ -109,11 +109,11 @@ footer {
   padding: 20px;
 }
 
-img{
+img {
   width: 15%;
 }
 
-.gameStatistic{
+.gameStatistic {
   padding-right: 0px;
   padding-left: 0px;
   margin-bottom: 3%;
