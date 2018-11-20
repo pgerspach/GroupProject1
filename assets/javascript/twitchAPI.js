@@ -109,6 +109,7 @@ $(document).ready(function() {
   var child;
 
   $(".submitButton").on("click", function(event) {
+    console.log("IT UPDATED");
     event.preventDefault();
     var gameName = $(".inputGame").val();
 
@@ -166,24 +167,55 @@ $(document).ready(function() {
       url: `https://api.twitch.tv/kraken/streams?client_id=o31s0t9lor4pa6ix7id21wlfbilp67&game=${gameID}&type=suggest`,
       method: "GET"
     }).then(function(data) {
-      var embedDiv = $("<div>");
-      embedDiv.attr("id", "twitch-embed");
-      var twitchStream = embedDiv;
-      $(".twitch-video").html(twitchStream);
-
-      var embed = new Twitch.Embed("twitch-embed", {
-        width: 426 * 1.2,
-        height: 240 * 1.2,
-        layout: "video",
-        theme: "dark",
-        channel: data.streams[0].channel.display_name
-      });
-
-      embed.addEventListener(Twitch.Embed.VIDEO_READY, function() {
-        console.log("The video is ready");
-      });
+      console.log(data);
+      whichStream(data);
+      $(".streamOption").on("click", function(event){
+        var streamVal = $(this).attr("value");
+        var embedDiv = $("<div>");
+        embedDiv.attr("id", "twitch-embed");
+        var twitchStream = embedDiv;
+        $(".twitch-video").html(twitchStream);
+  
+        var embed = new Twitch.Embed("twitch-embed", {
+          width: 426 * 1.2,
+          height: 240 * 1.2,
+          layout: "video",
+          theme: "dark",
+          channel: data.streams[streamVal].channel.display_name
+        });
+  
+        embed.addEventListener(Twitch.Embed.VIDEO_READY, function() {
+          console.log("YAY");
+        });
+      })
       showSteam(steamGame);
+
+      
     });
+  }
+  function whichStream(data) {
+    var topFive = [];
+    let streamHeader = $("<div>");
+    streamHeader.attr("style", "font-size:30px;color:white;margin:5px");
+    streamHeader.html("Select Stream:");
+    $(".twitch-video").html("");
+
+    $(".twitch-video").append(streamHeader);
+
+    for(var i = 0; i<5; i++) {
+      topFive.push(data.streams[i].channel.display_name);
+      console.log("DATA STREAMS: "+data.streams[i].channel.display_name);
+
+      let channelDiv = $("<div>");
+      channelDiv.attr("class", "streamOption");
+      channelDiv.attr("value", i);
+      channelDiv.attr("style", "font-size:25px;color:white;margin:5px");
+
+      channelDiv.html(topFive[i]);
+      $(".twitch-video").append(channelDiv);
+      
+    }
+    console.log(topFive);
   }
   function showSteam(steamGame) {
     $.ajax({
