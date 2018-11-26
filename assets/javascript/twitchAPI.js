@@ -54,8 +54,8 @@ $(document).ready(function() {
         <div class="card-body description"></div>
       </div>
   </div>
- 
-      <div class="card mb-6 col-12 gameStatistic">
+      <div class="col-md-12">
+      <div class="card mb-6 gameStatistic">
         <div class="card-header">Game Statistics</div>
         <div class="card-body">
           <iframe
@@ -69,8 +69,10 @@ $(document).ready(function() {
           </iframe>
         </div>
       </div>
-      <div class="card mb-6">
-      <div class="card-header">Review</div>
+      </div>
+      <div class="col-md-12">
+      <div class="card mb-6" id="review">
+      <div class="card-header">Gamer Review</div>
             <div class="card-body">
                   <div id="comment-section"></div>
                   <form method="post">
@@ -78,6 +80,7 @@ $(document).ready(function() {
                       <input class="btn btn-default" type="submit" name="submit" id="com_sub">
                   </form>
             </div>
+      </div>
       </div>
     </div>
 
