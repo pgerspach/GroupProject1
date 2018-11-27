@@ -216,3 +216,8 @@ img {
  margin-bottom: 20px;
  margin-top: 0px;
 }
+
+#comment {
+  display: block;
+  margin-bottom: 20px;
+}
