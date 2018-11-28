@@ -12,6 +12,7 @@
 //     }
 // });
 $(document).ready(function() {
+  var IGDBkey = "113cc591fdb770d986daf308ece73efb";
   var fullPageHTML = `
   
   <div class="cointainer header-back">
@@ -54,8 +55,8 @@ $(document).ready(function() {
         <div class="card-body description"></div>
       </div>
   </div>
-      <div class="col-md-12">
-      <div class="card mb-6 gameStatistic">
+ 
+      <div class="card mb-6 col-12 gameStatistic">
         <div class="card-header">Game Statistics</div>
         <div class="card-body">
           <iframe
@@ -69,8 +70,7 @@ $(document).ready(function() {
           </iframe>
         </div>
       </div>
-      </div>
-      <div class="col-md-12">
+      <div class = "col-md-12">
       <div class="card mb-6" id="review">
       <div class="card-header">Gamer Review</div>
             <div class="card-body">
@@ -119,12 +119,14 @@ $(document).ready(function() {
     $("body").html(fullPageHTML);
     $("#com_sub").on("click", function(event) {
       event.preventDefault();
-  
-      var comment = $("#comment").val().trim();
+
+      var comment = $("#comment")
+        .val()
+        .trim();
       console.log(comment);
-  
+
       child.push({
-        comment: comment,
+        comment: comment
       });
       $("#comment").val("");
       var comm = $("<p>");
@@ -150,7 +152,7 @@ $(document).ready(function() {
     $("#tweet").empty();
     getFullName(gameName);
   }
-  function getFullName(gameName) {
+  function getFullNameTwitch(gameName) {
     $.ajax({
       url: `https://api.twitch.tv/kraken/search/games?client_id=o31s0t9lor4pa6ix7id21wlfbilp67&query=${gameName}&type=suggest`,
       method: "GET"
@@ -159,12 +161,79 @@ $(document).ready(function() {
       var steamGame = gameID;
       gameID = gameID.replace(/\s/g, "%20");
       getStream(steamGame, gameID);
-      showOverview(gameID);
-      showTwitter(gameName);
-      addComments(steamGame);
     });
   }
+  function getFullName2(gameID) {
+    var steamGame = gameID;
+    gameID = gameID.replace(/\s/g, "%20");
+    getFullNameTwitch(steamGame);
+    showOverview(gameID);
+    addComments(steamGame);
+    showSteam(steamGame);
+    console.log("Steam Game" + steamGame.trim());
+  }
+  function getFullName(gameName) {
+    $.ajax({
+      url: `https://cors-anywhere.herokuapp.com/https://api-endpoint.igdb.com/games/?search=${gameName}&fields=name&limit=25`,
+      method: `GET`,
+      headers: {
+        "user-key": IGDBkey,
+        accept: `application/json`
+      }
+    }).then(response => {
+      console.log(response);
+      showModal(response);
+      showTwitter(gameName);
+    });
+  }
+  function showModal(gameArray) {
+    $(".gameChooseModal").remove();
+    let gna = [];
+    let gameNameArray = [];
+    for (let returnGame of gameArray) {
+      gna.push(returnGame.name);
+      gameNameArray.push(returnGame.name);
+    }
 
+    gameNameArray.sort(function(a, b) {
+      return a.length - b.length;
+    });
+
+    gameNameArray = gameNameArray.slice(0, 5);
+    gna = gna.slice(0, 5);
+    for (let piece of gameNameArray) {
+      if (!inArray(piece, gna)) {
+        gna.push(piece);
+      }
+    }
+
+    let chooseModal = $("<div>");
+    chooseModal.attr("class", "gameChooseModal");
+    $(".row.content").attr("style", "display:none");
+    $(".footer").attr("style", "display:none");
+    $(".content-back").append(chooseModal);
+    $(".content-back").attr("style", "background:rgb(0,0,0,.5);");
+
+    for (let rGameName of gna) {
+      console.log("game name: " + rGameName);
+      let newDiv = $("<div>");
+      newDiv.attr("value", `${rGameName}`);
+      newDiv.html(`${rGameName}`);
+      newDiv.attr(`class`, "gameOption");
+      $(".gameChooseModal").append(newDiv);
+    }
+    $(".gameOption").on("click", event => {
+      let gameSelect = event.currentTarget.textContent;
+      console.log(event);
+
+      console.log(gameSelect);
+      $(".row.content").attr("style", "display:flex");
+      $(".gameChooseModal").remove();
+      $(".content-back").attr("style", "background:rgb(255,255,255);");
+      $(".footer").attr("style", "display:flex");
+      getFullName2(gameSelect.trim());
+    });
+  }
   function getStream(steamGame, gameID) {
     $.ajax({
       url: `https://api.twitch.tv/kraken/streams?client_id=o31s0t9lor4pa6ix7id21wlfbilp67&game=${gameID}&type=suggest`,
@@ -172,13 +241,13 @@ $(document).ready(function() {
     }).then(function(data) {
       console.log(data);
       whichStream(data);
-      $(".streamOption").on("click", function(event){
+      $(".streamOption").on("click", function(event) {
         var streamVal = $(this).attr("value");
         var embedDiv = $("<div>");
         embedDiv.attr("id", "twitch-embed");
         var twitchStream = embedDiv;
         $(".twitch-video").html(twitchStream);
-  
+
         var embed = new Twitch.Embed("twitch-embed", {
           width: 426 * 1.2,
           height: 240 * 1.2,
@@ -186,14 +255,11 @@ $(document).ready(function() {
           theme: "dark",
           channel: data.streams[streamVal].channel.display_name
         });
-  
+
         embed.addEventListener(Twitch.Embed.VIDEO_READY, function() {
           console.log("YAY");
         });
-      })
-      showSteam(steamGame);
-
-      
+      });
     });
   }
   function whichStream(data) {
@@ -205,18 +271,16 @@ $(document).ready(function() {
 
     $(".twitch-video").append(streamHeader);
 
-    for(var i = 0; i<5; i++) {
+    for (var i = 0; i < 5; i++) {
       topFive.push(data.streams[i].channel.display_name);
-      console.log("DATA STREAMS: "+data.streams[i].channel.display_name);
+      console.log("DATA STREAMS: " + data.streams[i].channel.display_name);
 
       let channelDiv = $("<div>");
       channelDiv.attr("class", "streamOption");
       channelDiv.attr("value", i);
-      channelDiv.attr("style", "font-size:25px;color:white;margin:5px");
 
       channelDiv.html(topFive[i]);
       $(".twitch-video").append(channelDiv);
-      
     }
     console.log(topFive);
   }
@@ -284,5 +348,13 @@ $(document).ready(function() {
         $("#comment-section").append(comm);
       });
     });
+  }
+  function inArray(thing, array) {
+    for (item of array) {
+      if (thing == item) {
+        return true;
+      }
+    }
+    return false;
   }
 });

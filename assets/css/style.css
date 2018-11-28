@@ -213,8 +213,42 @@ img {
 }
 
 #review {
- margin-bottom: 20px;
- margin-top: 0px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+.streamOption {
+  font-size: 25px;
+  color: white;
+  margin: 5px;
+}
+.streamOption:hover {
+  cursor: pointer;
+  color: #2f2f31;
+  text-shadow: 1px 1px white;
+}
+.gameOption {
+  font-size: 23px;
+  color: white;
+  margin-top: 5px;
+}
+
+.gameOption:hover {
+  cursor: pointer;
+  color: #2f2f31;
+  text-shadow: 1px 1px white;
+}
+.gameChooseModal {
+  background: #2f2f31;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 10px;
+  width: 50vw;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  align-self: center;
+  margin: auto;
 }
 
 #comment {
